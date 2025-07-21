@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fulfillments</title>
+</head>
+<body>
+    <h1>Fulfillments</h1>
+    {% if fulfillments %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Tracking Number</th>
+                <th>Tracking Company</th>
+                <th>Tracking URL</th>
+            </tr>
+            {% for fulfillment in fulfillments %}
+            <tr>
+                <td>{{ fulfillment.id }}</td>
+                <td>{{ fulfillment.status }}</td>
+                <td>{{ fulfillment.trackingInfo.number }}</td>
+                <td>{{ fulfillment.trackingInfo.company }}</td>
+                <td><a href="{{ fulfillment.trackingInfo.url }}">{{ fulfillment.trackingInfo.url }}</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No fulfillments found for this order.</p>
+    {% endif %}
+    <br>
+    <a href="/">Back to Home</a>
+</body>
+</html>
